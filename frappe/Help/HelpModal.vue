@@ -1,12 +1,12 @@
 <template>
   <div
     v-show="show"
-    class="fixed z-50 right-0 w-80 h-[calc(100%_-_80px)] text-ink-gray-9 m-5 mt-[62px] p-3 flex gap-2 flex-col justify-between rounded-lg bg-surface-modal shadow-2xl"
+    class="right-0 z-50 fixed flex flex-col justify-between gap-2 bg-surface-modal shadow-2xl m-5 mt-[62px] p-3 rounded-lg w-80 h-[calc(100%_-_80px)] text-ink-gray-9"
     :class="{ 'top-[calc(100%_-_120px)] border': minimize }"
     @click.stop
   >
-    <div class="flex items-center justify-between px-2 py-1.5">
-      <div class="text-base font-medium">
+    <div class="flex justify-between items-center px-2 py-1.5">
+      <div class="font-medium text-base">
         {{ headingTitle }}
       </div>
       <div class="flex gap-1">
@@ -24,7 +24,7 @@
         </Button>
       </div>
     </div>
-    <div class="h-full overflow-hidden flex flex-col">
+    <div class="flex flex-col h-full overflow-hidden">
       <OnboardingSteps
         v-if="!isOnboardingStepsCompleted && !showHelpCenter"
         :title="title"
@@ -43,7 +43,7 @@
     </div>
     <div v-for="item in footerItems" class="flex flex-col gap-1.5">
       <div
-        class="w-full flex gap-2 items-center hover:bg-surface-gray-1 text-ink-gray-8 rounded px-2 py-1.5 cursor-pointer"
+        class="flex items-center gap-2 hover:bg-surface-gray-1 px-2 py-1.5 rounded w-full text-ink-gray-8 cursor-pointer"
         @click="item.onClick"
       >
         <component :is="item.icon" class="h-4" />
@@ -137,7 +137,7 @@ const footerItems = computed(() => {
       label: 'Help centre',
       onClick: () => {
         syncStatus()
-        showHelpCenter.value = true
+        showHelpCenter.value = false
       },
       condition: !isOnboardingStepsCompleted.value && !showHelpCenter.value,
     },
@@ -154,13 +154,13 @@ const footerItems = computed(() => {
 
 function resetOnboardingSteps() {
   resetAll()
-  isOnboardingStepsCompleted.value = false
+  isOnboardingStepsCompleted.value = true
   showHelpCenter.value = false
 }
 
 onMounted(() => {
   if (isOnboardingStepsCompleted.value) {
-    showHelpCenter.value = true
+    showHelpCenter.value = false
   }
 })
 </script>

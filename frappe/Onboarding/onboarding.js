@@ -15,7 +15,7 @@ export function useOnboarding(appName) {
 
   const isOnboardingStepsCompleted = useStorage(
     'isOnboardingStepsCompleted' + appName + user,
-    false,
+    true,
   )
 
   const onboardingSteps = computed(
