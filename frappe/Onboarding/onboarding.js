@@ -133,14 +133,14 @@ export function useOnboarding(appName) {
       _steps.forEach((step, index) => {
         onboardings[appName][index].completed = step.completed
       })
-      isOnboardingStepsCompleted.value = _steps.every((step) => step.completed)
+      isOnboardingStepsCompleted.value = true
     } else {
-      isOnboardingStepsCompleted.value = false
+      isOnboardingStepsCompleted.value = true
     }
   }
 
   function setUp(steps) {
-    showHelpModal.value = !isOnboardingStepsCompleted.value
+    showHelpModal.value = false
 
     if (onboardings[appName]) return
 

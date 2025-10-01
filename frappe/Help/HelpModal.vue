@@ -159,6 +159,7 @@ function resetOnboardingSteps() {
 }
 
 onMounted(() => {
+  showHelpCenter.value = false
   if (isOnboardingStepsCompleted.value) {
     showHelpCenter.value = false
   }
