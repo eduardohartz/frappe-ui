@@ -25,31 +25,31 @@
             isOpen: isComboboxOpen,
           }"
         >
-          <div class="w-full space-y-1.5">
-            <label v-if="props.label" class="block text-xs text-ink-gray-5">
+          <div class="space-y-1.5 w-full">
+            <label v-if="props.label" class="block text-ink-gray-5 text-xs">
               {{ props.label }}
             </label>
             <button
-              class="flex h-7 w-full items-center justify-between gap-2 rounded bg-surface-gray-2 px-2 py-1 transition-colors hover:bg-surface-gray-3 border border-transparent focus:border-outline-gray-4 focus:outline-none focus:ring-2 focus:ring-outline-gray-3"
+              class="flex justify-between items-center gap-2 bg-surface-gray-2 hover:bg-surface-gray-3 px-2 py-1 border border-transparent rounded focus:border-outline-gray-4 focus:outline-none focus:ring-outline-gray-3 focus:ring-2 w-full h-7 transition-colors"
               :class="{ 'bg-surface-gray-3': isComboboxOpen }"
               @click="() => togglePopover()"
             >
               <div class="flex items-center overflow-hidden">
                 <slot name="prefix" />
                 <span
-                  class="truncate text-base leading-5 text-ink-gray-8"
+                  class="text-ink-gray-8 text-base truncate leading-5"
                   v-if="displayValue"
                 >
                   {{ displayValue }}
                 </span>
-                <span class="text-base leading-5 text-ink-gray-4" v-else>
+                <span class="text-ink-gray-4 text-base leading-5" v-else>
                   {{ placeholder || '' }}
                 </span>
                 <slot name="suffix" />
               </div>
               <FeatherIcon
                 name="chevron-down"
-                class="h-4 w-4 text-ink-gray-5"
+                class="w-4 h-4 text-ink-gray-5"
                 aria-hidden="true"
               />
             </button>
@@ -59,22 +59,22 @@
       <template #body="{ isOpen, togglePopover }">
         <div v-show="isOpen">
           <div
-            class="relative mt-1 rounded-lg bg-surface-modal text-base shadow-2xl"
+            class="relative bg-surface-modal shadow-2xl mt-1 rounded-lg text-base"
             :class="bodyClasses"
           >
             <ComboboxOptions
-              class="max-h-[15rem] overflow-y-auto px-1.5 pb-1.5"
+              class="px-1.5 pb-1.5 max-h-[15rem] overflow-y-auto"
               :class="{ 'pt-1.5': hideSearch }"
               static
             >
               <div
                 v-if="!hideSearch"
-                class="sticky top-0 z-10 flex items-stretch space-x-1.5 bg-surface-modal py-1.5"
+                class="top-0 z-10 sticky flex items-stretch space-x-1.5 bg-surface-modal py-1.5"
               >
                 <div class="relative w-full">
                   <ComboboxInput
                     ref="searchInput"
-                    class="form-input w-full focus:bg-surface-gray-3 hover:bg-surface-gray-4 text-ink-gray-8"
+                    class="hover:bg-surface-gray-4 focus:bg-surface-gray-3 w-full text-ink-gray-8 form-input"
                     type="text"
                     :value="query"
                     @change="query = $event.target.value"
@@ -82,11 +82,11 @@
                     placeholder="Search"
                   />
                   <div
-                    class="absolute right-0 inline-flex h-7 w-7 items-center justify-center"
+                    class="inline-flex right-0 absolute justify-center items-center w-7 h-7"
                   >
                     <LoadingIndicator
                       v-if="props.loading"
-                      class="h-4 w-4 text-ink-gray-5"
+                      class="w-4 h-4 text-ink-gray-5"
                     />
                     <button v-else @click="clearAll">
                       <FeatherIcon name="x" class="w-4 text-ink-gray-8" />
@@ -101,7 +101,7 @@
               >
                 <div
                   v-if="group.group && !group.hideLabel"
-                  class="sticky top-10 truncate bg-surface-modal px-2.5 py-1.5 text-sm font-medium text-ink-gray-5"
+                  class="top-10 sticky bg-surface-modal px-2.5 py-1.5 font-medium text-ink-gray-5 text-sm truncate"
                 >
                   {{ group.group }}
                 </div>
@@ -125,7 +125,7 @@
                       },
                     ]"
                   >
-                    <div class="flex flex-1 gap-2 overflow-hidden items-center">
+                    <div class="flex flex-1 items-center gap-2 overflow-hidden">
                       <div
                         v-if="$slots['item-prefix'] || props.multiple"
                         class="flex flex-shrink-0"
@@ -137,19 +137,19 @@
                           <FeatherIcon
                             name="check"
                             v-if="isOptionSelected(option)"
-                            class="h-4 w-4 text-ink-gray-7"
+                            class="w-4 h-4 text-ink-gray-7"
                           />
-                          <div v-else class="h-4 w-4" />
+                          <div v-else class="w-4 h-4" />
                         </slot>
                       </div>
-                      <span class="flex-1 truncate text-ink-gray-7">
+                      <span class="flex-1 text-ink-gray-7 truncate">
                         {{ getLabel(option) }}
                       </span>
                     </div>
 
                     <div
                       v-if="$slots['item-suffix'] || option?.description"
-                      class="ml-2 flex-shrink-0"
+                      class="flex-shrink-0 ml-2"
                     >
                       <slot
                         name="item-suffix"
@@ -157,7 +157,7 @@
                       >
                         <div
                           v-if="option?.description"
-                          class="text-sm text-ink-gray-5"
+                          class="text-ink-gray-5 text-sm"
                         >
                           {{ option.description }}
                         </div>
@@ -168,7 +168,7 @@
               </div>
               <li
                 v-if="groups.length == 0"
-                class="rounded-md px-2.5 py-1.5 text-base text-ink-gray-5"
+                class="px-2.5 py-1.5 rounded-md text-ink-gray-5 text-base"
               >
                 No results found
               </li>
@@ -176,22 +176,22 @@
 
             <div
               v-if="$slots.footer || props.showFooter || multiple"
-              class="border-t p-1"
+              class="p-1 border-t"
             >
               <slot name="footer" v-bind="{ togglePopover }">
-                <div v-if="multiple" class="flex items-center justify-end">
+                <div v-if="multiple" class="flex justify-end items-center">
                   <Button
                     v-if="!areAllOptionsSelected"
-                    label="Select All"
+                    label="Selecionar Todos"
                     @click.stop="selectAll"
                   />
                   <Button
                     v-if="areAllOptionsSelected"
-                    label="Clear All"
+                    label="Limpar Todos"
                     @click.stop="clearAll"
                   />
                 </div>
-                <div v-else class="flex items-center justify-end">
+                <div v-else class="flex justify-end items-center">
                   <Button label="Clear" @click.stop="clearAll" />
                 </div>
               </slot>

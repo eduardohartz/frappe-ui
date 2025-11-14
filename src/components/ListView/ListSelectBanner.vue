@@ -9,10 +9,10 @@
   >
     <div
       v-if="list.selections.size"
-      class="absolute inset-x-0 bottom-6 mx-auto w-max text-base"
+      class="bottom-6 absolute inset-x-0 mx-auto w-max text-base"
     >
       <div
-        class="flex min-w-[596px] items-center space-x-3 rounded-lg bg-surface-white px-4 py-2 shadow-2xl"
+        class="flex items-center space-x-3 bg-surface-white shadow-2xl px-4 py-2 rounded-lg min-w-[596px]"
         :class="$attrs.class"
       >
         <slot
@@ -54,7 +54,7 @@
               variant="ghost"
               @click="list.toggleAllRows(true)"
             >
-              Select all
+              Selecionar todos
             </Button>
             <Button
               icon="x"

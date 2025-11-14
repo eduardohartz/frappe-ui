@@ -310,7 +310,7 @@ const custom_rows = [
             :item="column"
           >
             <template #prefix="{ item }">
-              <FeatherIcon :name="item.icon" class="h-4 w-4" />
+              <FeatherIcon :name="item.icon" class="w-4 h-4" />
             </template>
           </ListHeaderItem>
         </ListHeader>
@@ -325,7 +325,7 @@ const custom_rows = [
               <template #prefix>
                 <div
                   v-if="column.key == 'status'"
-                  class="h-3 w-3 rounded-full"
+                  class="rounded-full w-3 h-3"
                   :class="item.bg_color"
                 />
                 <Avatar
@@ -351,7 +351,7 @@ const custom_rows = [
               <Button variant="ghost" label="Delete" />
               <Button
                 variant="ghost"
-                label="Unselect all"
+                label="Limpar seleção"
                 @click="unselectAll"
               />
             </div>
@@ -373,7 +373,7 @@ const custom_rows = [
         row-key="id"
       >
         <template #group-header="{ group }">
-          <span class="text-base font-medium leading-6 text-ink-gray-9">
+          <span class="font-medium text-ink-gray-9 text-base leading-6">
             {{ group.group }} ({{ group.rows.length }})
           </span>
         </template>

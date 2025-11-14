@@ -29,13 +29,13 @@
         </div>
         <div
           v-if="images && images.length"
-          class="grid gap-px mb-4"
+          class="gap-px grid mb-4"
           :style="gridStyle"
         >
           <div
             v-for="(item, idx) in images"
             :key="item.id"
-            class="relative aspect-square w-full h-full overflow-hidden group bg-surface-white"
+            class="group relative bg-surface-white w-full h-full aspect-square overflow-hidden"
             :draggable="true"
             @dragstart="onDragStart(idx)"
             @dragover="onDragOver($event, idx)"
@@ -46,7 +46,7 @@
           >
             <button
               type="button"
-              class="absolute top-1 right-1 z-10 bg-white/80 hover:bg-white rounded-full p-1 shadow transition-opacity opacity-0 group-hover:opacity-100 focus:opacity-100"
+              class="top-1 right-1 z-10 absolute bg-white/80 hover:bg-white opacity-0 focus:opacity-100 group-hover:opacity-100 shadow p-1 rounded-full transition-opacity"
               aria-label="Remove image"
               @click.stop="removeImage(idx)"
             >
@@ -58,11 +58,11 @@
               <img
                 :src="item.existing?.src"
                 :alt="item.existing?.alt || ''"
-                class="object-cover w-full h-full rounded-[2px]"
+                class="rounded-[2px] w-full h-full object-cover"
               />
               <!-- Caption overlay -->
               <div
-                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent rounded-b-[2px] transition-opacity"
+                class="right-0 bottom-0 left-0 absolute bg-gradient-to-t from-black/60 to-transparent rounded-b-[2px] transition-opacity"
                 :class="
                   editingCaption === `${item.type}-${idx}`
                     ? 'opacity-100'
@@ -95,7 +95,7 @@
                       saveCaption(`${item.type}-${idx}`, idx)
                     "
                     @keydown.escape="cancelEditingCaption"
-                    class="w-full text-xs bg-white/90 text-gray-900 px-1 py-0.5 rounded-sm border-none outline-none"
+                    class="bg-white/90 px-1 py-0.5 border-none rounded-sm outline-none w-full text-gray-900 text-xs"
                     placeholder="Add caption..."
                     maxlength="200"
                   />
@@ -107,10 +107,10 @@
             <template v-else-if="item.type === 'file' && item.file">
               <template v-if="!isImageSupported(item.file)">
                 <div
-                  class="flex flex-col items-center justify-center w-full h-full text-ink-gray-4 bg-surface-gray-1 rounded-[2px]"
+                  class="flex flex-col justify-center items-center bg-surface-gray-1 rounded-[2px] w-full h-full text-ink-gray-4"
                 >
                   <span
-                    class="text-p-xs text-ink-gray-4 w-full text-center px-2 mt-1"
+                    class="mt-1 px-2 w-full text-ink-gray-4 text-p-xs text-center"
                     :title="item.file.name"
                   >
                     {{ item.file.name }}
@@ -120,12 +120,12 @@
               <template v-else-if="item.file.type.startsWith('image/')">
                 <img
                   :src="filePreview(item.file)"
-                  class="object-cover w-full h-full rounded-[2px]"
+                  class="rounded-[2px] w-full h-full object-cover"
                   :alt="item.alt || ''"
                 />
                 <!-- Caption overlay -->
                 <div
-                  class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent rounded-b-[2px] transition-opacity"
+                  class="right-0 bottom-0 left-0 absolute bg-gradient-to-t from-black/60 to-transparent rounded-b-[2px] transition-opacity"
                   :class="
                     editingCaption === `${item.type}-${idx}`
                       ? 'opacity-100'
@@ -155,7 +155,7 @@
                         saveCaption(`${item.type}-${idx}`, idx)
                       "
                       @keydown.escape="cancelEditingCaption"
-                      class="w-full text-xs bg-white/90 text-gray-900 px-1 py-0.5 rounded border-none outline-none"
+                      class="bg-white/90 px-1 py-0.5 border-none rounded outline-none w-full text-gray-900 text-xs"
                       placeholder="Add caption..."
                       maxlength="200"
                     />
@@ -165,24 +165,24 @@
             </template>
           </div>
         </div>
-        <div v-if="images && images.length" class="text-p-sm text-ink-gray-5">
+        <div v-if="images && images.length" class="text-ink-gray-5 text-p-sm">
           Upload more images by dropping them anywhere in this window. Reorder
           images by dragging them. Hover over an image to edit caption.
         </div>
         <div
           v-else
-          class="flex flex-col items-center justify-center min-h-[200px]"
+          class="flex flex-col justify-center items-center min-h-[200px]"
         >
           <div
-            class="w-full flex flex-1 flex-col items-center justify-center border border-outline-gray-2 rounded-lg bg-surface-gray-1 h-full cursor-pointer transition hover:border-primary-400 hover:bg-primary-50 text-center"
+            class="flex flex-col flex-1 justify-center items-center bg-surface-gray-1 hover:bg-primary-50 border hover:border-primary-400 rounded-lg border-outline-gray-2 w-full h-full text-center transition cursor-pointer"
             @click="triggerFileInput"
             @dragover.prevent
             @drop.prevent="onDrop"
           >
-            <div class="text-ink-gray-4 mb-2">
+            <div class="mb-2 text-ink-gray-4">
               <LucideImagePlus class="size-6" />
             </div>
-            <div class="text-ink-gray-5 text-sm font-medium">
+            <div class="font-medium text-ink-gray-5 text-sm">
               Drag & drop images here or click to select
             </div>
           </div>
@@ -191,7 +191,7 @@
           <div class="mb-2 text-sm">
             Uploading: {{ uploadedCount }}/{{ totalCount }}
           </div>
-          <div class="w-full bg-gray-200 rounded h-2 overflow-hidden">
+          <div class="bg-gray-200 rounded w-full h-2 overflow-hidden">
             <div
               class="bg-surface-gray-5 h-2 transition-all"
               :style="{ width: uploadProgress + '%' }"
@@ -242,9 +242,9 @@
     >
       <div
         v-if="isFileDragging"
-        class="fixed inset-0 z-50 bg-gray-900/60 pointer-events-none flex items-center justify-center"
+        class="z-50 fixed inset-0 flex justify-center items-center bg-gray-900/60 pointer-events-none"
       >
-        <div class="text-ink-gray-1 text-base font-medium">
+        <div class="font-medium text-ink-gray-1 text-base">
           Drop images anywhere
         </div>
       </div>
