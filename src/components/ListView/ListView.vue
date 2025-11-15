@@ -1,7 +1,7 @@
 <template>
-  <div class="relative flex w-full flex-1 flex-col overflow-x-auto">
+  <div class="relative flex flex-col flex-1 w-full overflow-x-auto">
     <div
-      class="flex w-max min-w-full flex-col overflow-y-hidden"
+      class="flex flex-col w-max min-w-full overflow-y-hidden"
       :class="$attrs.class"
       :style="$attrs.style"
     >
@@ -92,7 +92,7 @@ let _options = computed(() => {
     showTooltip: defaultTrue(props.options.showTooltip),
     selectionText:
       props.options.selectionText ||
-      ((val) => (val === 1 ? '1 row selected' : `${val} rows selected`)),
+      ((val) => (val === 1 ? '1 linha selecionada' : `${val} linhas selecionadas`)),
     enableActive: defaultFalse(props.options.enableActive),
     selectable: defaultTrue(props.options.selectable),
     resizeColumn: defaultFalse(props.options.resizeColumn),
