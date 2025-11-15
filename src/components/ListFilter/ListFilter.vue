@@ -79,7 +79,7 @@
             v-else
             class="mb-3 flex h-7 items-center px-3 text-sm text-ink-gray-5"
           >
-            Empty - Choose a field to filter by
+            Vazio - Escolha um campo para filtrar
           </div>
           <div class="flex items-center justify-between gap-2">
             <Autocomplete

@@ -44,7 +44,7 @@ const crmSidebar = reactive({
         { label: 'Notes', icon: Notes, to: '/notes' },
         { label: 'Tasks', icon: Tasks, to: '/tasks' },
         { label: 'Call Logs', icon: CallLogs, to: '/call-logs' },
-        { label: 'Email Templates', icon: EmailTemplates, to: '/email-templates' },
+        { label: 'Templates de email', icon: EmailTemplates, to: '/email-templates' },
       ]
     },
     {
@@ -69,7 +69,7 @@ function toggleTheme() {
 <template>
   <Story>
     <Variant title="Sidebar">
-      <div class="flex h-screen w-full flex-col bg-surface-white shadow">
+      <div class="flex flex-col bg-surface-white shadow w-full h-screen">
         <Sidebar
           :header="crmSidebar.header"
           :sections="crmSidebar.sections"
