@@ -79,6 +79,6 @@ const { stepsCompleted, totalSteps, isOnboardingStepsCompleted } =
 
 const openOnboarding = () => {
   minimize.value = false
-  showHelpModal.value = true
+  showHelpModal.value = false
 }
 </script>
